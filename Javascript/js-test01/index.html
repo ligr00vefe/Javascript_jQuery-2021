@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    table {border-collapse: collapse; border: 1px solid black;}
+    table td {width: 200px; height: 100px; border: 1px solid gray;text-align: center;}
+    .slash {
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="100%" x2="100%" y2="0" stroke="gray" /></svg>');
+    }
+    .backslash {
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
+    }
+    .slash, .backslash { text-align: left; }
+    .slash div, .backslash div { text-align: right; }
+</style>
+<body>
+    <table class="test_table">
+        <tr>
+            <td rowspan="3" class="move_td">1-1</td>
+            <td>1-2</td>
+            <td>1-3</td>
+            <td>1-4</td>
+        </tr>
+        <tr>
+            <!-- <td>2-1</td> -->
+            <td>2-2</td>
+            <td>2-3</td>
+            <td>2-4</td>
+        </tr>
+        <tr>
+            <!-- <td>3-1</td> -->
+            <td class="slash">3-2</td>
+            <td class="slash">3-3</td>
+            <td class="slash">3-4</td>
+        </tr>
+    </table>
+</body>
+<script>
+    $(document).ready(function(){
+        let win768 = window.matchMedia("(max-width: 768px)");
+
+        if(win768.matches) {
+            $('.move_td').attr('colSpan',4).removeAttr('rowspan');
+            // alert('a');
+        }else {
+            $('.move_td').attr('rowSpan',3).removeAttr('colSpan');
+            // alert('b');
+        }    
+
+        // tb_contract_list 테이블 empty td colspan 설정하기. $(".tb_contract_list .empty_list_td").attr("colspan", $(".tb_contract_list thead th").length);
+
+    });
+</script>
+</html>
